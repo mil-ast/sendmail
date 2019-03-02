@@ -52,7 +52,7 @@ func NewClient(host Host) (Client, error) {
 }
 
 // Send send email
-func (client Client) Send(from, to, body string) error {
+func (client Client) Send(from, to, email string) error {
 	var err error
 
 	addrFrom := mail.Address{Address: from}
@@ -72,7 +72,7 @@ func (client Client) Send(from, to, body string) error {
 		return err
 	}
 	// write
-	_, err = w.Write([]byte(body))
+	_, err = w.Write([]byte(email))
 	if err != nil {
 		return err
 	}
