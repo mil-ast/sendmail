@@ -1,5 +1,6 @@
 # sendmail example
 
+```go
 import "github.com/mil-ast/sendmail"
 
 func testSend() error {
@@ -31,3 +32,4 @@ func testSend() error {
   // Quit QUIT command and closes the connection
 	return client.Quit()
 }
+```
