@@ -8,7 +8,7 @@ import (
 	"net/smtp"
 )
 
-// Options host
+// Options параметры подключения
 type Options struct {
 	Host     string
 	Port     uint16
