@@ -8,8 +8,8 @@ import (
 	"net/smtp"
 )
 
-// Host host
-type Host struct {
+// Options host
+type Options struct {
 	Host     string
 	Port     uint16
 	Login    string
@@ -22,10 +22,10 @@ type Client struct {
 }
 
 // NewClient create connection
-func NewClient(host Host) (Client, error) {
+func NewClient(options Options) (Client, error) {
 	var client Client
 
-	servername := fmt.Sprintf("%s:%d", host.Host, host.Port)
+	servername := fmt.Sprintf("%s:%d", options.Host, options.Port)
 	splitHost, _, _ := net.SplitHostPort(servername)
 
 	tlsconfig := &tls.Config{
@@ -43,7 +43,7 @@ func NewClient(host Host) (Client, error) {
 	}
 
 	// auth
-	auth := smtp.PlainAuth("", host.Login, host.Password, splitHost)
+	auth := smtp.PlainAuth("", options.Login, options.Password, splitHost)
 	if err = client.c.Auth(auth); err != nil {
 		return client, err
 	}
